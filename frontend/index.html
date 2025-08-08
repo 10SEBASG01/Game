@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Reto Matemático</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card" id="pantallaInicio">
+        <h1>Reto Matemático</h1>
+        <p>Ingresa tu nombre:</p>
+        <input id="nombreUsuario" placeholder="Tu nombre" />
+        <div class="contenedor-botones">
+            <button onclick="iniciarJuego()">Jugar</button>
+            <a href="scores.html" class="btn-secundario">Puntuaciones</a>
+        </div>
+        <div id="tablaPuntuaciones" class="hidden">
+            <h4>🏆 Mejores Puntajes:</h4>
+            <ul id="listaPuntuaciones"></ul>
+        </div>
+    </div>
+
+    <div class="card hidden" id="pantallaJuego">
+        <div class="info-juego">
+            <div id="nombreJugador"></div>
+            <div id="marcadorPuntaje">Puntaje: <span id="puntaje">0</span></div>
+        </div>
+        <div class="vidas" id="vidas"></div>
+        <div id="barraTiempoContenedor">
+            <div id="barraTiempo"></div>
+        </div>
+        <h2 id="pregunta"></h2>
+        <input id="respuesta" placeholder="Tu respuesta" type="number" />
+        <p id="estado"></p>
+    </div>
+
+    <div class="card hidden" id="pantallaFin">
+        <h1>Fin del Juego</h1>
+        <h2 id="puntajeFinal"></h2>
+        <div class="contenedor-botones">
+            <button onclick="reiniciarJuego()">Jugar de Nuevo</button>
+            <button onclick="verPuntuaciones()" class="btn-secundario">Volver al Inicio</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
