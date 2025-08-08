@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mongo-db:
+    image: mongo:4.4-focal
+    container_name: reto-mongo-db
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=supersecret
+    volumes:
+      - ./mongo-data:/data/db:z
+
+  backend:
+    build: ./backend
+    container_name: reto-backend
+    restart: unless-stopped
+    depends_on:
+      - mongo-db
+    environment:
+      - MONGODB_URI=mongodb://admin:supersecret@mongo-db:27017/retomatematico?authSource=admin
+    ports:
+      - "3000:3000"
+
+  frontend:
+    build: ./frontend
+    container_name: reto-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:z
+    depends_on:
+      - backend
